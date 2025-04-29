@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRCrypt</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="qrcode.js" defer></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <main class="container">
+        <h1>QRCrypt</h1>
+    
+        <div class="control-group">
+          <label>
+            <input type="radio" name="mode" value="cipher" checked /> Cipher
+          </label>
+          <label>
+            <input type="radio" name="mode" value="decipher" /> Decipher
+          </label>
+          <button id="actionBtn">Go</button>
+        </div>
+    
+        <textarea id="messageInput" placeholder="Enter your text here..." maxlength="4000"></textarea>
+    
+        <textarea id="keyInput" placeholder="Enter or paste key here..." maxlength="4000"></textarea>
+      </main>
+        
+      
+        
+    
+</body>
+</html>

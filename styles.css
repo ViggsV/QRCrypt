@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: #0e0e0e;
+  color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2rem;
+  min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #444;
+}
+
+.control-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #00aaff;
+  color: #0e0e0e;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;          /* fixed height for consistency */
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  resize: vertical;       /* allow user to resize if needed */
+  overflow-y: auto;       /* scroll if content exceeds */
+  background-color: #1c1c1c;
+  color: #f0f0f0;
+}
+
+textarea::placeholder {
+  color: #777;
+}
