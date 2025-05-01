@@ -59,3 +59,38 @@ textarea {
 textarea::placeholder {
   color: #777;
 }
+
+#keyInput {
+  height: 20px;
+}
+
+#bottomWrapper {
+  display: flex;
+  width: 100%;
+  padding: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  border: #444 1px solid;
+  border-radius: 8px;
+  gap: 1rem;
+}
+#informationContainer {
+
+  text-align: left;
+  font-size: 0.9rem;
+}
+#informationContainer ol {
+  list-style:none
+}
+#informationContainer ul {
+  list-style: decimal;
+}
+#informationContainer ol,
+#informationContainer ul {
+  padding-left: 1.2rem;
+
+}
+
+#reader {
+  display: none;
+}
