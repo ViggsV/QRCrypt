@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QRCrypt</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="qrcode.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.js" defer></script>
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript" defer></script>
     <script src="script.js" defer></script>
 </head>
@@ -27,6 +27,28 @@
         <textarea id="messageInput" placeholder="Enter your text here..." maxlength="4000"></textarea>
     
         <textarea id="keyInput" placeholder="Enter or paste key here..." maxlength="4000"></textarea>
+
+        <div id="bottomWrapper">
+        <img id="qrCodeImage" width="256px" height="256px" alt="QR Code" />
+        <div id="informationContainer">
+          <ol>
+            <li><strong>Cipher:</strong></li>
+            <ul>
+              <li>Type your message above.</li>
+              <li>Click <em>Go</em> to generate the ciphered message and key.</li>
+              <li>Copy and save the ciphered message.</li>
+              <li>Download QR or copy the key.</li>
+            </ul>
+            <li><strong>Decipher:</strong></li>
+            <ul>
+              <li>Paste the ciphered message into the message box.</li>
+              <li>Scan, upload, or paste the key from the QR code.</li>
+              <li>Click <em>Go</em> to recover your original message.</li>
+            </ul>
+          </ol>
+        </div>
+      </div>
+      <div id="reader" width="600px"></div>
       </main>
         
       
