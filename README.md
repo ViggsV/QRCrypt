@@ -59,6 +59,8 @@
 - Disable camera upon clicking cipher
 - Remove scroll bar
 - Hide 'QR Code' text and image until QR is generated
+- While fun for casual use, the Caesar cipher (even with rolling keys) isn't cryptographically secure for sensitive information.
+- Responsive design
 
 ---
 
