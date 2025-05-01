@@ -58,6 +58,7 @@
 - Add error messages when something goes wrong.
 - Disable camera upon clicking cipher
 - Remove scroll bar
+- Hide 'QR Code' text and image until QR is generated
 
 ---
 
