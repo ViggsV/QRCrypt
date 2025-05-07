@@ -1,4 +1,3 @@
-
 /*
   QRCrypt Script
   - Encrypts messages into a Caesar-style cipher with random rolling keys.
@@ -21,7 +20,7 @@ const readerContainer = document.getElementById('reader');
 let scannerInitialized = false;
 let html5QrcodeScanner;
 
-// ----- Encryption / Decryption Functions -----
+// ----- Encryption / Decryption Functions -----  
 
 /**
  * Encrypts a message using a random rolling key (1-9) per character.
@@ -174,6 +173,7 @@ actionBtn.addEventListener('click', () => {
     messageInput.value = encrypted;
     keyInput.value     = keySequence;
     generateQrCode(keySequence);
+    document.getElementById('qrCodeImage').style.display = 'flex';
   } else {
     if (!key) return;
     const decrypted = decryptWithKeySequence(text, key);
@@ -182,4 +182,21 @@ actionBtn.addEventListener('click', () => {
   }
 });
 
+// Handle information button click
+document.getElementById('infoToggle').addEventListener('click', function(e) {
+  const infoContainer = document.getElementById('informationContainer');
+  if (infoContainer.style.display === 'none' || infoContainer.style.display === '') {
+    infoContainer.style.display = 'block';
+  } else {
+    infoContainer.style.display = 'none';
+  }
+  e.stopPropagation(); // Prevent event bubbling
+});
 
+// Close dropdown when clicking elsewhere
+document.addEventListener('click', function(e) {
+  const infoContainer = document.getElementById('informationContainer');
+  if (infoContainer.style.display === 'block' && !e.target.closest('.info-button-container')) {
+    infoContainer.style.display = 'none';
+  }
+});

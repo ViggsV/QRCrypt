@@ -10,7 +10,6 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-
     <main class="container">
         <h1>QRCrypt</h1>
     
@@ -22,6 +21,33 @@
             <input type="radio" name="mode" value="decipher" /> Decipher
           </label>
           <button id="actionBtn">Go</button>
+          <div class="info-button-container">
+            <svg class="info-icon" id="infoToggle" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <div id="informationContainer">
+              <div class="info-section">
+                <h3>📝 To Encrypt</h3>
+                <ol>
+                  <li>Type message</li>
+                  <li>Click "Go"</li>
+                  <li>Save encrypted text</li>
+                  <li>Save QR code</li>
+                </ol>
+              </div>
+              
+              <div class="info-section">
+                <h3>🔓 To Decrypt</h3>
+                <ol>
+                  <li>Paste encrypted text</li>
+                  <li>Scan/paste QR key</li>
+                  <li>Click "Go"</li>
+                </ol>
+              </div>
+            </div>
+          </div>
         </div>
     
         <textarea id="messageInput" placeholder="Enter your text here..." maxlength="4000"></textarea>
@@ -29,30 +55,10 @@
         <textarea id="keyInput" placeholder="Enter or paste key here..." maxlength="4000"></textarea>
 
         <div id="bottomWrapper">
-        <img id="qrCodeImage" width="256px" height="256px" alt="QR Code" />
-        <div id="informationContainer">
-          <ol>
-            <li><strong>Cipher:</strong></li>
-            <ul>
-              <li>Type your message above.</li>
-              <li>Click <em>Go</em> to generate the ciphered message and key.</li>
-              <li>Copy and save the ciphered message.</li>
-              <li>Download QR or copy the key.</li>
-            </ul>
-            <li><strong>Decipher:</strong></li>
-            <ul>
-              <li>Paste the ciphered message into the message box.</li>
-              <li>Scan, upload, or paste the key from the QR code.</li>
-              <li>Click <em>Go</em> to recover your original message.</li>
-            </ul>
-          </ol>
+          <img id="qrCodeImage" width="256px" height="256px" alt="QR Code" />
         </div>
-      </div>
-      <div id="reader" width="600px"></div>
-      </main>
         
-      
-        
-    
+        <div id="reader" width="600px"></div>
+    </main>
 </body>
 </html>
