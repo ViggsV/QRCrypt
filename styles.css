@@ -6,8 +6,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 2rem;
+  padding-top: 5px;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .container {
@@ -31,6 +32,7 @@ h1 {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  position: relative; /* Added to ensure proper positioning context */
 }
 
 button {
@@ -44,14 +46,14 @@ button {
 }
 
 textarea {
-  width: 100%;
-  height: 150px;          /* fixed height for consistency */
+  
+  height: 150px;
   padding: 0.75rem;
   font-size: 1rem;
   border-radius: 8px;
   border: none;
-  resize: vertical;       /* allow user to resize if needed */
-  overflow-y: auto;       /* scroll if content exceeds */
+  resize: vertical;
+  overflow-y: auto;
   background-color: #1c1c1c;
   color: #f0f0f0;
 }
@@ -66,31 +68,80 @@ textarea::placeholder {
 
 #bottomWrapper {
   display: flex;
-  width: 100%;
+  flex-direction: column;
   padding: 0.75rem;
   justify-content: center;
   align-items: center;
   border: #444 1px solid;
   border-radius: 8px;
-  gap: 1rem;
+  gap: 1.5rem;
 }
-#informationContainer {
 
+#qrCodeImage {
+  max-width: 100%;
+  height: auto;
+  width: 256px;
+  display: none;
+}
+
+/* Info button container */
+.info-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Info icon styling */
+.info-icon {
+  cursor: pointer;
+  vertical-align: middle;
+  stroke: #f0f0f0;
+  fill: none;
+}
+
+/* Information dropdown styling */
+#informationContainer {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 300px;
+  max-width: 90vw;
+  background-color: #1c1c1c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 12px;
   text-align: left;
   font-size: 0.9rem;
+  z-index: 100;
+  display: none; /* Hidden by default */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
 }
-#informationContainer ol {
-  list-style:none
-}
-#informationContainer ul {
-  list-style: decimal;
-}
-#informationContainer ol,
-#informationContainer ul {
-  padding-left: 1.2rem;
 
+/* Arrow for dropdown */
+#informationContainer::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  border-width: 0 10px 10px;
+  border-style: solid;
+  border-color: transparent transparent #444 transparent;
+}
+
+#informationContainer ol {
+
+  padding-left: 0.5rem;
+  margin: 0;
+}
+
+#informationContainer ul {
+
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
 }
 
 #reader {
   display: none;
+  margin: auto;
+  width: 100%;
 }
