@@ -7,20 +7,20 @@
 */
 
 // ----- Constants & DOM References -----
-const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-const actionBtn       = document.getElementById('actionBtn');
-const modeInputs      = document.querySelectorAll('input[name="mode"]');
-const messageInput    = document.getElementById('messageInput');
-const keyInput        = document.getElementById('keyInput');
-const qrImage         = document.getElementById('qrCodeImage');
-const bottomWrapper   = document.getElementById('bottomWrapper');
-const readerContainer = document.getElementById('reader');
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+const actionBtn = document.getElementById("actionBtn");
+const modeInputs = document.querySelectorAll('input[name="mode"]');
+const messageInput = document.getElementById("messageInput");
+const keyInput = document.getElementById("keyInput");
+const qrImage = document.getElementById("qrCodeImage");
+const bottomWrapper = document.getElementById("bottomWrapper");
+const readerContainer = document.getElementById("reader");
 
 // Scanner state
 let scannerInitialized = false;
 let html5QrcodeScanner;
 
-// ----- Encryption / Decryption Functions -----  
+// ----- Encryption / Decryption Functions -----
 
 /**
  * Encrypts a message using a random rolling key (1-9) per character.
@@ -29,16 +29,16 @@ let html5QrcodeScanner;
  * @returns {Object} { encrypted: string, keySequence: string }
  */
 function encryptWithRandomKeys(message) {
-  const clean    = message.toLowerCase();
-  let encrypted  = '';
-  let keys       = [];
+  const clean = message.toLowerCase();
+  let encrypted = "";
+  let keys = [];
 
   for (let char of clean) {
     if (/[a-z]/.test(char)) {
-      const key       = Math.floor(Math.random() * 9) + 1;
-      const index     = alphabet.indexOf(char);
-      const newIndex  = (index + key) % alphabet.length;
-      encrypted      += alphabet[newIndex];
+      const key = Math.floor(Math.random() * 9) + 1;
+      const index = alphabet.indexOf(char);
+      const newIndex = (index + key) % alphabet.length;
+      encrypted += alphabet[newIndex];
       keys.push(key);
     } else {
       encrypted += char;
@@ -46,7 +46,7 @@ function encryptWithRandomKeys(message) {
     }
   }
 
-  return { encrypted, keySequence: keys.join('') };
+  return { encrypted, keySequence: keys.join("") };
 }
 
 /**
@@ -56,14 +56,14 @@ function encryptWithRandomKeys(message) {
  * @returns {string} Decrypted plain text.
  */
 function decryptWithKeySequence(encrypted, keySeq) {
-  let plain = '';
+  let plain = "";
 
   for (let i = 0; i < encrypted.length; i++) {
     const char = encrypted[i];
-    const key  = Number(keySeq[i] || 0);
+    const key = Number(keySeq[i] || 0);
 
     if (/[a-z]/.test(char) && key > 0) {
-      const index    = alphabet.indexOf(char);
+      const index = alphabet.indexOf(char);
       const newIndex = (index - key + alphabet.length) % alphabet.length;
       plain += alphabet[newIndex];
     } else {
@@ -82,8 +82,8 @@ function decryptWithKeySequence(encrypted, keySeq) {
  */
 function generateQrCode(text) {
   QRCode.toDataURL(text)
-    .then(dataUrl => qrImage.src = dataUrl)
-    .catch(err => console.error('QR generation error:', err));
+    .then((dataUrl) => (qrImage.src = dataUrl))
+    .catch((err) => console.error("QR generation error:", err));
 }
 
 // ----- Scanner Initialization -----
@@ -95,7 +95,7 @@ function initScanner() {
   if (scannerInitialized) return;
 
   html5QrcodeScanner = new Html5QrcodeScanner(
-    'reader',
+    "reader",
     { fps: 10, qrbox: { width: 250, height: 250 } },
     false
   );
@@ -110,7 +110,7 @@ function initScanner() {
 function clearScanner() {
   if (!scannerInitialized) return;
 
-  readerContainer.innerHTML = '';
+  readerContainer.innerHTML = "";
   scannerInitialized = false;
 }
 
@@ -122,7 +122,7 @@ function clearScanner() {
  * @param {any} decodedResult
  */
 function onScanSuccess(decodedText, decodedResult) {
-  console.log('Decoded:', decodedText, decodedResult);
+  console.log("Decoded:", decodedText, decodedResult);
   keyInput.value = decodedText;
 }
 
@@ -131,7 +131,7 @@ function onScanSuccess(decodedText, decodedResult) {
  * @param {Error} error
  */
 function onScanFailure(error) {
-  console.warn('Scan failure:', error);
+  console.warn("Scan failure:", error);
 }
 
 // ----- UI Toggle & Event Listeners -----
@@ -141,39 +141,39 @@ function onScanFailure(error) {
  * @param {string} mode - 'cipher' or 'decipher'
  */
 function toggleMode(mode) {
-  if (mode === 'decipher') {
-    bottomWrapper.style.display   = 'none';
-    readerContainer.style.display = 'block';
+  if (mode === "decipher") {
+    bottomWrapper.style.display = "none";
+    readerContainer.style.display = "block";
     initScanner();
   } else {
-    bottomWrapper.style.display   = 'flex';
-    readerContainer.style.display = 'none';
+    bottomWrapper.style.display = "flex";
+    readerContainer.style.display = "none";
     clearScanner();
   }
 }
 
 // Listen to mode radio changes
-modeInputs.forEach(input => {
-  input.addEventListener('change', () => toggleMode(input.value));
+modeInputs.forEach((input) => {
+  input.addEventListener("change", () => toggleMode(input.value));
 });
 
 // Initial hide of scanner
-toggleMode(Array.from(modeInputs).find(i => i.checked).value);
+toggleMode(Array.from(modeInputs).find((i) => i.checked).value);
 
 // Handle Go button click
-actionBtn.addEventListener('click', () => {
-  const mode = Array.from(modeInputs).find(i => i.checked).value;
+actionBtn.addEventListener("click", () => {
+  const mode = Array.from(modeInputs).find((i) => i.checked).value;
   const text = messageInput.value.trim();
-  const key  = keyInput.value.trim();
+  const key = keyInput.value.trim();
 
   if (!text) return;
 
-  if (mode === 'cipher') {
+  if (mode === "cipher") {
     const { encrypted, keySequence } = encryptWithRandomKeys(text);
     messageInput.value = encrypted;
-    keyInput.value     = keySequence;
+    keyInput.value = keySequence;
     generateQrCode(keySequence);
-    document.getElementById('qrCodeImage').style.display = 'flex';
+    document.getElementById("qrCodeImage").style.display = "flex";
   } else {
     if (!key) return;
     const decrypted = decryptWithKeySequence(text, key);
@@ -183,20 +183,42 @@ actionBtn.addEventListener('click', () => {
 });
 
 // Handle information button click
-document.getElementById('infoToggle').addEventListener('click', function(e) {
-  const infoContainer = document.getElementById('informationContainer');
-  if (infoContainer.style.display === 'none' || infoContainer.style.display === '') {
-    infoContainer.style.display = 'block';
+document.getElementById("infoToggle").addEventListener("click", function (e) {
+  const infoContainer = document.getElementById("informationContainer");
+  if (
+    infoContainer.style.display === "none" ||
+    infoContainer.style.display === ""
+  ) {
+    infoContainer.style.display = "block";
   } else {
-    infoContainer.style.display = 'none';
+    infoContainer.style.display = "none";
   }
   e.stopPropagation(); // Prevent event bubbling
 });
 
 // Close dropdown when clicking elsewhere
-document.addEventListener('click', function(e) {
-  const infoContainer = document.getElementById('informationContainer');
-  if (infoContainer.style.display === 'block' && !e.target.closest('.info-button-container')) {
-    infoContainer.style.display = 'none';
+document.addEventListener("click", function (e) {
+  const infoContainer = document.getElementById("informationContainer");
+  if (
+    infoContainer.style.display === "block" &&
+    !e.target.closest(".info-button-container")
+  ) {
+    infoContainer.style.display = "none";
   }
 });
+
+// Character Counter with a warning on approach to limit
+const messageCount = document.getElementById("messageCount");
+
+function updateCounter(textElem, countElem) {
+  const len = textElem.value.length;
+  const limit = Number(textElem.getAttribute("maxlength")) || 4000;
+  countElem.textContent = `${len} / ${limit}`;
+
+  // toggle warning
+  countElem.classList.toggle("warning", len > limit * 0.9 && len <= limit);
+}
+
+messageInput.addEventListener("input", () =>
+  updateCounter(messageInput, messageCount)
+);

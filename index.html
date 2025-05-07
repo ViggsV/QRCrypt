@@ -1,64 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QRCrypt</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.js" defer></script>
-    <script src="https://unpkg.com/html5-qrcode" type="text/javascript" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.js"
+      defer
+    ></script>
+    <script
+      src="https://unpkg.com/html5-qrcode"
+      type="text/javascript"
+      defer
+    ></script>
     <script src="script.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <main class="container">
-        <h1>QRCrypt</h1>
-    
-        <div class="control-group">
-          <label>
-            <input type="radio" name="mode" value="cipher" checked /> Cipher
-          </label>
-          <label>
-            <input type="radio" name="mode" value="decipher" /> Decipher
-          </label>
-          <button id="actionBtn">Go</button>
-          <div class="info-button-container">
-            <svg class="info-icon" id="infoToggle" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-            <div id="informationContainer">
-              <div class="info-section">
-                <h3>📝 To Encrypt</h3>
-                <ol>
-                  <li>Type message</li>
-                  <li>Click "Go"</li>
-                  <li>Save encrypted text</li>
-                  <li>Save QR code</li>
-                </ol>
-              </div>
-              
-              <div class="info-section">
-                <h3>🔓 To Decrypt</h3>
-                <ol>
-                  <li>Paste encrypted text</li>
-                  <li>Scan/paste QR key</li>
-                  <li>Click "Go"</li>
-                </ol>
-              </div>
+      <h1>QRCrypt</h1>
+
+      <div class="control-group">
+        <label>
+          <input type="radio" name="mode" value="cipher" checked /> Cipher
+        </label>
+        <label>
+          <input type="radio" name="mode" value="decipher" /> Decipher
+        </label>
+        <button id="actionBtn">Go</button>
+        <div class="info-button-container">
+          <svg
+            class="info-icon"
+            id="infoToggle"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <div id="informationContainer">
+            <div class="info-section">
+              <h3>📝 To Encrypt</h3>
+              <ol>
+                <li>Type message</li>
+                <li>Click "Go"</li>
+                <li>Save encrypted text</li>
+                <li>Save QR code</li>
+              </ol>
+            </div>
+
+            <div class="info-section">
+              <h3>🔓 To Decrypt</h3>
+              <ol>
+                <li>Paste encrypted text</li>
+                <li>Scan/paste QR key</li>
+                <li>Click "Go"</li>
+              </ol>
             </div>
           </div>
         </div>
-    
-        <textarea id="messageInput" placeholder="Enter your text here..." maxlength="4000"></textarea>
-    
-        <textarea id="keyInput" placeholder="Enter or paste key here..." maxlength="4000"></textarea>
+      </div>
+      <div class="char-counter" id="messageCount">0 / 4000</div>
+      <textarea
+        id="messageInput"
+        placeholder="Enter your text here..."
+        maxlength="4000"
+      ></textarea>
 
-        <div id="bottomWrapper">
-          <img id="qrCodeImage" alt="QR Code" />
-        </div>
-        
-        <div id="reader" ></div>
+      <textarea
+        id="keyInput"
+        placeholder="Enter or paste key here..."
+        maxlength="4000"
+      ></textarea>
+
+      <div id="bottomWrapper">
+        <img id="qrCodeImage" alt="QR Code" />
+      </div>
+
+      <div id="reader"></div>
     </main>
-</body>
+  </body>
 </html>
